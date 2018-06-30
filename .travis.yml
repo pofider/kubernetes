@@ -2,14 +2,10 @@ sudo: required
 language: node_js
 node_js:
 - '8'
-services:
-- docker
 deploy:
   provider: script
   skip_cleanup: true
   script: bash docker_push.sh
-  on:
-    tags: true
 env:
   global:
   - secure: jqgP4Eptcmjq53mwjtHbjgByEWwAp8vsi1dcIGNM5Ea54a8/U4mN29qq/OjjWksKRj6ntnGjNRUpo3zsyRFD+zy//bBnH80lCzZceMUHo8AORskxHZOv1VOzZSEAy4WsAB8dOQkg7NbpcwZ8ccqTY2NpHXJB18+11UoYXM+VVgzuy6Nk+/8fxbLiCaRab/4IOZKiniU1q9q+ckS4iwNLpxgZv49DgMjyE7dqIMclDGdGy5a3Zmm6gYm6XcfwauUIMKwX/jtF88ufOrhjd6rSxxIm6cxYIUoXkYfmtpQsIFnHuXHPc9lIx8vz4aqk4GYSzc4GZvdNE+ZZxem891YPT01chW/myX4uWdHlq2ZIkSbMt4rLcACxtmxM4SOlB9W92TY0YnrjR5WeRKOaoPuKXgo/D0DiB8GmUMX50dqHrc1s1ZjYhAesAdFEHvML+97PW69u+KDaOtP3iI7zvrcmYOyZod7jd/w3QBCJV4+5cKt23jyr/Yt8RZgjF/VXl+DKjZABA8pfa76L5g4Gd91rCTlQOihDSWPUMjFPqpV12xZgXGpPTQoSrpwxtA8E8uEYt54L2AltRAmXvXdYRgdV2Usd4sQhiZTg0lwTHa6zjY8RYqVyyCEaNmc8+fct5tvJFyhdnRZ7BedpqwQOL1DR163N9e0c9eQpvcQ2ciJsT+E=
