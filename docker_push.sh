@@ -10,4 +10,10 @@ az login --service-principal --username $AZ_APP_ID --password $AZ_PASSWORD --ten
 sudo az aks install-cli
 sudo az aks get-credentials --resource-group test --name test
 
-sudo kubectl apply -f ./kubernetes/staging
+if [ "$TRAVIS_BRANCH" == "master" ]; then 
+    echo "deploying to production"
+    sudo kubectl apply -f ./kubernetes/prod
+else
+    echo "deploying to staging"
+    sudo kubectl apply -f ./kubernetes/staging
+fi
