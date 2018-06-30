@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: janblaha-staging
-        image: pofider/janblaha:$tag
+        image: pofider/janblaha:0.0.18
         imagePullPolicy: Always
         ports:
         - containerPort: 1000
