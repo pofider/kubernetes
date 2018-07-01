@@ -11,7 +11,17 @@ spec:
     spec:
       containers:
       - name: janblaha-staging
-        image: pofider/janblaha:0.1.0
+        image: pofider/janblaha:0.1.5
         imagePullPolicy: Always
         ports:
         - containerPort: 1000
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: docker-sock-volume
+      volumes:
+      - name: docker-sock-volume
+        hostPath:
+          # location on host
+          path: /var/run/docker.sock
+          # this field is optional
+          type: File
