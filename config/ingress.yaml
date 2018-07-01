@@ -2,10 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: basic-ingress
-  annotations:
+  annotations:    
     kubernetes.io/ingress.class: addon-http-application-routing
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/limit-rps: "100"
 spec:
+  tls:
+  - hosts:
+    - janblaha.net
+    secretName: tls-secret
   rules:
   - host: janblaha.net
     http:  
@@ -20,11 +25,4 @@ spec:
       - path: /
         backend:
           serviceName: janblaha-staging
-          servicePort: 1000        
-  - host: janblaha.c53cd804-7e21-4dfb-8f7f-15a05c3059a1.northeurope.aksapp.io
-    http:  
-      paths:
-      - path: /
-        backend:
-          serviceName: janblaha
-          servicePort: 1000        
+          servicePort: 1000          
