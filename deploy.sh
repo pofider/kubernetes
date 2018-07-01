@@ -12,8 +12,8 @@ sudo az aks get-credentials --resource-group test --name test
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then 
     echo "deploying to production"
-    sudo kubectl apply -f ./kubernetes/prod
+    sudo kubectl apply -f ./config/prod
 else
     echo "deploying to staging"
-    sudo kubectl apply -f ./kubernetes/staging
+    sudo kubectl apply -f ./config/staging
 fi
