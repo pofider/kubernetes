@@ -25,3 +25,16 @@ spec:
           path: /var/run/docker.sock
           # this field is optional
           type: File
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: janblaha-staging
+  labels:
+    app: janbljanblaha-stagingaha
+spec:
+  selector:
+    app: janblaha-staging
+  ports:
+    - name: http
+      port: 1000          
