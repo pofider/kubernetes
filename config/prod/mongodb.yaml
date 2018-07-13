@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-disk
+  annotations:
+    volume.beta.kubernetes.io/storage-class: managed-premium
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---      
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  template:  
+    metadata:
+      labels:
+        app: mongodb        
+    spec:
+      containers:     
+      - image: mongo:4.0.0-xenial
+        name: mongodb       
+        ports:
+        - containerPort: 27017      
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongodb-disk
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "admin"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo
+              key: mongo.txt
+      volumes:
+      - name: mongodb-disk
+        persistentVolumeClaim:
+          claimName: mongodb-disk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  ports:
+    - port: 27017
+  type: LoadBalancer  
+  selector:
+    app: mongodb      
