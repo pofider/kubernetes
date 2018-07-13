@@ -12,8 +12,8 @@ hub config remote.origin.url https://pofider:${GITHUB_TOKEN}@github.com/pofider/
 
 DOCKER_IMAGE="$(echo "$2" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
 
-sed -i 's/'"$DOCKER_IMAGE"'\:\(.*\)/'"$DOCKER_IMAGE"'\:'"$TRAVIS_TAG"'/' ./config/staging/janblaha.yaml
-sed -i 's/'"$DOCKER_IMAGE"'\:\(.*\)/'"$DOCKER_IMAGE"'\:'"$TRAVIS_TAG"'/' ./config/prod/janblaha.yaml
+sed -i 's/'"$DOCKER_IMAGE"'\:\(.*\)/'"$DOCKER_IMAGE"'\:'"$TRAVIS_TAG"'/' ./config/staging/${1}.yaml
+sed -i 's/'"$DOCKER_IMAGE"'\:\(.*\)/'"$DOCKER_IMAGE"'\:'"$TRAVIS_TAG"'/' ./config/prod/${1}.yaml
 hub add config/staging/${1}.yaml
 hub add config/prod/${1}.yaml
 
