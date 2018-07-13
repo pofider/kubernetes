@@ -44,7 +44,7 @@ metadata:
       }    
 spec:
   rules:  
-  - host: staging.jsreport.net
+  - host: staging.website.jsreport.cloud
     http:  
       paths:
       - path: /
