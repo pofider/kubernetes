@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: janblaha
-        image: pofider/janblaha:0.1.7
+        image: pofider/janblaha:0.1.9
         imagePullPolicy: Always
         ports:
         - containerPort: 1000
