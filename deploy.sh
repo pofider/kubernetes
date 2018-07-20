@@ -13,7 +13,8 @@ sudo az aks get-credentials --resource-group jsreport --name jsreport
 if [ "$TRAVIS_BRANCH" == "master" ]; then 
     echo "deploying to production"
     sudo kubectl apply -f ./config/prod
-else
-    echo "deploying to staging"
-    sudo kubectl apply -f ./config/staging
+else    
+    SERVICE=echo "$TRAVIS_BRANCH" | cut -d "-" -f 1
+    echo "deploying to staging for ${SERVICE}"
+    sudo kubectl apply -f ./config/staging/${SERVICE}.yaml
 fi
