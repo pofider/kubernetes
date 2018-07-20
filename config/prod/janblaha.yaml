@@ -39,7 +39,7 @@ metadata:
     nginx.ingress.kubernetes.io/limit-rps: "10"            
 spec:
   rules:  
-  - host: jsreport.cloud
+  - host: janblaha.jsreport.cloud
     http:  
       paths:
       - path: /
