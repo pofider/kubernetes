@@ -44,7 +44,7 @@ metadata:
       }    
 spec:
   rules:  
-  - host: staging.jsreport.cloud
+  - host: staging.janblaha.jsreport.cloud
     http:  
       paths:
       - path: /
