@@ -14,7 +14,7 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo "deploying to production"
     sudo kubectl apply -f ./config/prod
 else    
-    SERVICE=echo "$TRAVIS_BRANCH" | cut -d "-" -f 1
+    SERVICE="$(echo "$TRAVIS_BRANCH" | cut -d "-" -f 1)"
     echo "deploying to staging for ${SERVICE}"
     sudo kubectl apply -f ./config/staging/${SERVICE}.yaml
 fi
