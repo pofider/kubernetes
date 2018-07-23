@@ -14,7 +14,13 @@ spec:
         image: jsreport/forum:0.1.9
         imagePullPolicy: Always
         ports:
-        - containerPort: 4567      
+        - containerPort: 4567    
+        env:           
+        - name: secret
+          valueFrom:
+            secretKeyRef:
+              name: forum
+              key: forum.txt        
 ---          
 apiVersion: v1
 kind: Service
