@@ -4,3 +4,5 @@ jsreport
 jsreport.pub
 *.cert
 *.key
+mongo.txt
+forum.txt

@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: forum-staging
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: forum-staging
+    spec:
+      containers:
+      - name: forum-staging
+        image: jsreport/forum:0.1.9
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4567      
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: forum-staging
+  labels:
+    app: forum-staging
+spec:
+  selector:
+    app: forum-staging
+  ports:
+    - name: http
+      port: 4567          
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: forum-staging-ingress
+  annotations:    
+    kubernetes.io/ingress.class: nginx   
+    ingress.kubernetes.io/ssl-redirect: "false"    
+    nginx.ingress.kubernetes.io/limit-rps: "10"        
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location /robots.txt {
+        add_header Content-Type text/plain;
+        return 200 "User-agent: *\nDisallow: /\n";
+      }    
+spec:
+  rules:  
+  - host: staging.forum.jsreport.cloud
+    http:  
+      paths:
+      - path: /
+        backend:
+          serviceName: forum-staging
+          servicePort: 4567      
