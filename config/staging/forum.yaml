@@ -20,7 +20,14 @@ spec:
           valueFrom:
             secretKeyRef:
               name: forum
-              key: forum.txt        
+              key: forum.txt
+        - name: mongo:host
+          value: mongodb
+        - name: mongo:password
+          valueFrom:
+            secretKeyRef:
+              name: mongo
+              key: mongo.txt       
 ---          
 apiVersion: v1
 kind: Service
