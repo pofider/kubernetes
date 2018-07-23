@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: forum
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: forum
+    spec:
+      containers:
+      - name: forum
+        image: jsreport/forum:0.1.9
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4567      
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: forum
+  labels:
+    app: forum
+spec:
+  selector:
+    app: forum
+  ports:
+    - name: http
+      port: 4567          
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: forum-ingress
+  annotations:    
+    kubernetes.io/ingress.class: nginx   
+    ingress.kubernetes.io/ssl-redirect: "false"    
+    nginx.ingress.kubernetes.io/limit-rps: "10"           
+spec:
+  rules:  
+  - host: forum.jsreport.cloud
+    http:  
+      paths:
+      - path: /
+        backend:
+          serviceName: forum
+          servicePort: 4567      
