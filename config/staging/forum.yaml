@@ -23,6 +23,10 @@ spec:
               key: forum.txt
         - name: mongo__host
           value: mongodb
+        - name: mongo__username
+          value: admin   
+        - name: mongo__authDatabase
+          value: admin       
         - name: mongo__password
           valueFrom:
             secretKeyRef:
