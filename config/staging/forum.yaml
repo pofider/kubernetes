@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: forum-staging
-        image: jsreport/forum:0.1.9
+        image: jsreport/forum:0.2.5
         imagePullPolicy: Always
         ports:
         - containerPort: 4567    
@@ -21,9 +21,9 @@ spec:
             secretKeyRef:
               name: forum
               key: forum.txt
-        - name: mongo:host
+        - name: mongo__host
           value: mongodb
-        - name: mongo:password
+        - name: mongo__password
           valueFrom:
             secretKeyRef:
               name: mongo
