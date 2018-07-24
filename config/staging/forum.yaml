@@ -11,8 +11,11 @@ spec:
     spec:
       containers:
       - name: forum-staging
-        image: jsreport/forum:0.2.5
+        image: jsreport/forum:0.2.13
         imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /app/public/uploads
+          name: forum-disk
         ports:
         - containerPort: 4567    
         env:           
@@ -31,7 +34,11 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongo
-              key: mongo.txt       
+              key: mongo.txt 
+      volumes:
+        - name: forum-disk
+          persistentVolumeClaim:
+            claimName: forum-disk      
 ---          
 apiVersion: v1
 kind: Service
