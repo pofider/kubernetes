@@ -11,10 +11,22 @@ spec:
     spec:
       containers:
       - name: taxes-staging
-        image: pofider/taxes:0.1.9
+        image: pofider/taxes:0.2.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 1000      
+        - containerPort: 3001      
+        volumeMounts:
+        - name: taxes
+          mountPath: /app/credentials.json
+          subPath: credentials.json
+          readOnly: true
+      volumes:
+      - name: taxes
+        secret:
+          secretName: tax-credentials  
+          items:
+          - key: taxCredentials.json
+            path: credentials.json
 ---          
 apiVersion: v1
 kind: Service
@@ -27,7 +39,7 @@ spec:
     app: taxes-staging
   ports:
     - name: http
-      port: 1000          
+      port: 3001          
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -50,4 +62,4 @@ spec:
       - path: /
         backend:
           serviceName: taxes-staging
-          servicePort: 1000      
+          servicePort: 3001      

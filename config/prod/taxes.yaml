@@ -14,7 +14,19 @@ spec:
         image: pofider/taxes:0.1.9
         imagePullPolicy: Always
         ports:
-        - containerPort: 1000
+        - containerPort: 3001
+        volumeMounts:
+        - name: taxes
+          mountPath: /app/credentials.json
+          subPath: credentials.json
+          readOnly: true
+      volumes:
+      - name: taxes
+        secret:
+          secretName: tax-credentials  
+          items:
+          - key: taxCredentials.json
+            path: credentials.json
 ---
 apiVersion: v1
 kind: Service
@@ -27,7 +39,7 @@ spec:
     app: taxes
   ports:
     - name: http
-      port: 1000   
+      port: 3001   
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -45,4 +57,4 @@ spec:
       - path: /
         backend:
           serviceName: taxes
-          servicePort: 1000                 
+          servicePort: 3001                 
