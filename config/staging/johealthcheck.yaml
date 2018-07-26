@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: johealthcheck
-        image: pofider/johealthcheck:0.2.0
+        image: pofider/johealthcheck:0.5.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3001

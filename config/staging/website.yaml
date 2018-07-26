@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.1.7
+        image: jsreport/website:1.0.3
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
@@ -34,20 +34,20 @@ kind: Ingress
 metadata:
   name: website-staging-ingress
   annotations:    
-    kubernetes.io/ingress.class: nginx   
-    ingress.kubernetes.io/ssl-redirect: "false"    
-    nginx.ingress.kubernetes.io/limit-rps: "10"        
-    nginx.ingress.kubernetes.io/server-snippet: |
+    kubernetes.io/ingress.class: nginx     
+    nginx.ingress.kubernetes.io/limit-rps: "10"       
+    nginx.ingress.kubernetes.io/server-snippet: |      
       location /robots.txt {
         add_header Content-Type text/plain;
-        return 200 "User-agent: *\nDisallow: /\n";
-      }    
-spec:
+        return 201 "User-agent: *\nDisallow: /\n";
+      }     
+spec:    
   rules:  
-  - host: staging.website.jsreport.cloud
+  - host: jsreport.cloud
     http:  
       paths:
       - path: /
         backend:
           serviceName: website-staging
-          servicePort: 2000      
+          servicePort: 2000   
+      

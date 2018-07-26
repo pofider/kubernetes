@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground-staging
-        image: jsreport/playground:2.0.3
+        image: jsreport/playground:2.0.8
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -68,7 +68,7 @@ metadata:
       }    
 spec:
   rules:  
-  - host: staging.playground.jsreport.cloud
+  - host: playground.jsreport.cloud
     http:  
       paths:
       - path: /

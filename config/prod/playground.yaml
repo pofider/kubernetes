@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.0.3
+        image: jsreport/playground:2.0.8
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -58,12 +58,22 @@ kind: Ingress
 metadata:
   name: playground-ingress
   annotations:    
-    kubernetes.io/ingress.class: nginx   
-    ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/limit-rps: "10"           
+    kubernetes.io/ingress.class: nginx       
+    nginx.ingress.kubernetes.io/limit-rps: "10"   
+    ingress.kubernetes.io/force-ssl-redirect: "false"  
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # the default redirect status code is 308 which is not supported in ie on win7    
+    nginx.ingress.kubernetes.io/configuration-snippet: |  
+      if ($redirect_to_https) {
+        return 301 https://$best_http_host$request_uri;				        
+      }           
 spec:
+  tls:
+  - secretName: playground-tls-secret
+    hosts:
+    - playground.jsreport.net
   rules:  
-  - host: playground.jsreport.cloud
+  - host: playground.jsreport.net
     http:  
       paths:
       - path: /
