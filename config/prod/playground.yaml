@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.0.8
+        image: jsreport/playground:2.0.10
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -34,6 +34,52 @@ spec:
               key: mongo.txt
         - name: extensions_mongodbStore_authDb
           value: "admin"
+        - name: extensions_playground_baseUrl
+          value: "http://playground.jsreport.cloud"            
+        - name: extensions_mongodbStore_username
+          value: "admin"            
+        - name: extensions_mongodbStore_password
+          valueFrom:
+            secretKeyRef:
+              name: mongo
+              key: mongo.txt
+        - name: extensions_mongodbStore_authDb
+          value: "admin"
+        - name: extensions_playground_facebook_clientID
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: fbid
+        - name: extensions_playground_facebook_clientSecret
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: fbsecret
+        - name: extensions_playground_twitter_consumerKey
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: twkey
+        - name: extensions_playground_twitter_consumerSecret
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: twsecret
+        - name: extensions_playground_github_clientID
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: gtid
+        - name: extensions_playground_github_clientSecret
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: gtsecret
+        - name: extensions_authentication_cookieSession_secret
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: secret
       volumes:
       - name: docker-sock-volume
         hostPath:        
