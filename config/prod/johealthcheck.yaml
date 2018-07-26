@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: johealthcheck
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: johealthcheck
+    spec:
+      containers:
+      - name: johealthcheck
+        image: pofider/johealthcheck:0.2.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - name: johealthcheck
+          mountPath: /app/credentials.json
+          subPath: credentials.json
+          readOnly: true
+      volumes:
+      - name: johealthcheck
+        secret:
+          secretName: jo-credentials  
+          items:
+          - key: joCredentials.json
+            path: credentials.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: johealthcheck
+  labels:
+    app: johealthcheck
+spec:
+  selector:
+    app: johealthcheck
+  ports:
+    - name: http
+      port: 1000   
