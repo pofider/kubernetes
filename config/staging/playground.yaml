@@ -26,7 +26,9 @@ spec:
         - name: stack
           value: "test"
         - name: extensions_playground_baseUrl
-          value: "http://playground.jsreport.cloud"            
+          value: "http://playground.jsreport.cloud" 
+        - name: extensions_mongodbStore_address
+          value: "mongodb"                
         - name: extensions_mongodbStore_username
           value: "admin"            
         - name: extensions_mongodbStore_password
