@@ -15,7 +15,8 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /app/public/uploads
-          name: forum-disk
+          name: general-disk
+          subPath: forum/uploads
         ports:
         - containerPort: 4567    
         env:           
@@ -36,9 +37,9 @@ spec:
               name: mongo
               key: mongo.txt 
       volumes:
-        - name: forum-disk
+        - name: general-disk
           persistentVolumeClaim:
-            claimName: forum-disk         
+            claimName: general-disk         
 ---          
 apiVersion: v1
 kind: Service

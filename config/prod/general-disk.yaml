@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: forum-disk
+  name: general-disk
   annotations:
     volume.beta.kubernetes.io/storage-class: managed-premium
 spec:
@@ -9,4 +9,4 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi     
+      storage: 16Gi

@@ -14,7 +14,19 @@ spec:
         image: pofider/janblaha:0.1.12
         imagePullPolicy: Always
         ports:
-        - containerPort: 1000      
+        - containerPort: 1000   
+        volumeMounts:
+        - name: credentials
+          mountPath: /app/twitter.keys.json
+          subPath: twitter.keys.json
+          readOnly: true
+      volumes:
+      - name: credentials
+        secret:
+          secretName: janblaha-credentials  
+          items:
+          - key: janblahaCredentials.json
+            path: twitter.keys.json   
 ---          
 apiVersion: v1
 kind: Service
