@@ -48,7 +48,11 @@ metadata:
   annotations:    
     kubernetes.io/ingress.class: nginx   
     ingress.kubernetes.io/ssl-redirect: "false"    
-    nginx.ingress.kubernetes.io/limit-rps: "10"            
+    nginx.ingress.kubernetes.io/limit-rps: "20"       
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = 'janblaha.net' ) {
+        rewrite ^ http://www.janblaha.net$request_uri permanent;
+      }
 spec:
   rules:  
   - host: janblaha.net
@@ -57,4 +61,12 @@ spec:
       - path: /
         backend:
           serviceName: janblaha
-          servicePort: 1000                 
+          servicePort: 1000   
+  - host: www.janblaha.net
+    http:  
+      paths:
+      - path: /
+        backend:
+          serviceName: janblaha
+          servicePort: 1000      
+             
