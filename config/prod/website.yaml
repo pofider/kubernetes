@@ -40,8 +40,19 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # the default redirect status code is 308 which is not supported in ie on win7    
     nginx.ingress.kubernetes.io/configuration-snippet: |  
+      set $shouldRedirect 0;      
+            
       if ($redirect_to_https) {
-        return 301 https://jsreport.net$request_uri;				        
+        set $shouldRedirect 1;   
+      } 
+
+      # xlsx requires plain http at this moment
+      if ($uri ~* \/temp\/){
+        set $shouldRedirect 0;
+      }
+
+      if ($shouldRedirect) {         
+        return 301 https://jsreport.net$request_uri;			      	        
       } 
 
       if ($host ~* ^www\.(.*)$) {
