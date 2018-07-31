@@ -40,3 +40,6 @@ tar -zcvf dump.tar.gz dump
 
 **edit deployment**
 kubectl edit deployment/deployment-name
+
+**kubernetes node logs**
+kubectl describe nodes
