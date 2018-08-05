@@ -1,18 +1,49 @@
-# jsreport infrastructure
 
-## Install on kubernetes
+# Kubernetes infrastructure
 
-create AKS service
-no rbac
-no http routing
-custom service principal 9173b07c-f531-45eb-94f0-713a5cc56c9a Dw8CDwA
+## Application deployment
 
-helm init
-helm install stable/nginx-ingress --namespace kube-system --set rbac.create=false
+Applications deployed to the kubernetes cluster:
+- [janblaha](https://github.com/pofider/janblaha)
+- [playground](https://github.com/jsreport/playground)
+- [website](https://github.com/jsreport/website)
+- [forum](https://github.com/jsreport/forum)
+- [jo-health-check](https://github.com/pofider/johealthcheck)
+- mongodb standard image
 
-kubectl apply -Rf .\config\
+All applications have the CI deployment set up. 
 
-## Cheat sheet
+### How to deploy new version
+Just create a new release tag. This triggers travis to build a new docker image and update the kubernetes staging application which is afterwards available on dns "playground|forum|janblaha|website".jsreport.cloud. 
+
+When the staging application looks ok it is time to deploy to production. This is done through merging PR automatically created during the previous process. 
+
+Open kubernetes repo in github. You should see the new branch created with name "update-playground:xx". The github offers button create pull request and merge it. This will trigger travis autobuild and deploy the application also to the production.
+
+### What every application needs to provide
+
+Travis is enabled.
+
+The `travis.yaml` contains deploy section and proper environment variables with github and dockerhub keys.
+
+The deploy script  `deploy.sh` with service and docker image specification is in the repository.
+
+Dockerhub repository is set up.
+
+The [kubernetes/config/staging](https://github.com/pofider/kubernetes/tree/master/config/staging) and [kubernetes/config/prod](https://github.com/pofider/kubernetes/tree/master/config/staging) includes particular service definition.
+
+## Azure cloud
+
+The kubernetes cluster runs in azure. You can login to the cluster using azure cli:
+```
+az login
+az aks install-cli
+az aks get-credentials --resource-group jsreport --name jsreport
+kubectl get pods
+```
+
+
+## Kuberenetes Cheat sheet
 
 **restart pod**
 kubectl get pod playground-695c6f874f-5tnsh -o yaml | kubectl replace --force -f -
