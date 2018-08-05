@@ -24,7 +24,9 @@ spec:
             fieldRef:
               fieldPath: status.hostIP
         - name: stack
-          value: "test"
+          value: "prod"
+        - name: extensions_scripts_allowedModules
+          value: "http,https,lodash,bluebird,async,axios,request"     
         - name: extensions_mongodbStore_address
           value: "mongodb"     
         - name: extensions_mongodbStore_username
