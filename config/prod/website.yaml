@@ -47,7 +47,7 @@ metadata:
       } 
 
       # xlsx requires plain http at this moment
-      if ($uri ~* \/temp\/){
+      if ($uri ~* \/temp){
         set $shouldRedirect 0;
       }
 
