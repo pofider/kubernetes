@@ -47,6 +47,11 @@ spec:
               key: mongo.txt
         - name: extensions_mongodbStore_authDb
           value: "admin"
+        - name: extensions_playground_adminUserId
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: playgroundadmin
         - name: extensions_playground_facebook_clientID
           valueFrom:
             secretKeyRef:
