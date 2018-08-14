@@ -125,7 +125,7 @@ metadata:
       }           
 spec:
   tls:
-  - secretName: playground-tls-secret
+  - secretName: playground-tls-secret-full
     hosts:
     - playground.jsreport.net
   rules:  
