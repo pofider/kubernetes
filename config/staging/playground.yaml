@@ -23,6 +23,11 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
+        - name: loggly_token
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: logglyToken
         - name: stack
           value: "test"
         - name: extensions_scripts_allowedModules
