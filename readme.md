@@ -52,7 +52,7 @@ kubectl get pod playground-695c6f874f-5tnsh -o yaml | kubectl replace --force -f
 kubectl exec ingres-pod /sbin/killall5 -n kube-system
 
 **get ingress nginx config**
-kubectl exec ingress-pod cat /etc/nginx/nginx.conf > nginx.conf -n kube-system
+kubectl exec excited-squirrel-nginx-ingress-controller-6594c58f4b-rk9gk cat /etc/nginx/nginx.conf > nginx.conf -n kube-system
 
 **create ssl certificate**
 kubectl create secret tls janblaha-tls-secret --key janblaha.net.key --cert janblaha.net.cert

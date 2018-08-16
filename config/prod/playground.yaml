@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.1.4
+        image: jsreport/playground:2.2.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -23,6 +23,11 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
+        - name: loggly_token
+          valueFrom:
+            secretKeyRef:
+              name: playground
+              key: logglyToken
         - name: stack
           value: "prod"
         - name: extensions_scripts_allowedModules
