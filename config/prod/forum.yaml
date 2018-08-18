@@ -60,7 +60,8 @@ metadata:
   name: forum-ingress
   annotations:    
     kubernetes.io/ingress.class: nginx       
-    nginx.ingress.kubernetes.io/limit-rps: "50"           
+    nginx.ingress.kubernetes.io/limit-rps: "50"    
+    nginx.ingress.kubernetes.io/proxy-body-size: "5m"
     ingress.kubernetes.io/force-ssl-redirect: "false"  
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # the default redirect status code is 308 which is not supported in ie on win7    
