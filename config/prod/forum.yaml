@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: forum
-        image: jsreport/forum:1.0.0
+        image: jsreport/forum:1.1.1
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /app/public/uploads
