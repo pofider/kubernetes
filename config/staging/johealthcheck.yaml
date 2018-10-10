@@ -20,6 +20,11 @@ spec:
           mountPath: /app/credentials.json
           subPath: credentials.json
           readOnly: true
+        resources:
+          limits:
+            cpu: "0.5"
+          requests:
+            cpu: "0"
       volumes:
       - name: johealthcheck
         secret:

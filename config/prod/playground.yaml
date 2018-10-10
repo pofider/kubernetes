@@ -94,6 +94,11 @@ spec:
             secretKeyRef:
               name: playground
               key: secret
+        resources:
+          limits:
+            cpu: "0.5"
+          requests:
+            cpu: "0"
       volumes:
       - name: docker-sock-volume
         hostPath:        
