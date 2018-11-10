@@ -65,9 +65,9 @@ helm install stable/nginx-ingress --namespace kube-system --set rbac.create=fals
 travis encrypt DOCKER_USERNAME="pofider" --add
 
 **copy file from kubernetes pod**
-kubectl cp default/mongodb-6dc7b695bd-6b5z8:/dump.tar.gz dump.tar.gz
+kubectl cp default/temp-7c9d7f467c-l684n:/disk/forum.tar.gz forum.tar.gz
 mongodump
-tar -zcvf dump.tar.gz dump
+tar -zcvf forum.tar.gz forum
 
 **edit deployment**
 kubectl edit deployment/deployment-name
