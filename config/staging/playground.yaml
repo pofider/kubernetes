@@ -87,7 +87,8 @@ spec:
               key: secret
         resources:
           limits:
-            cpu: "0.5"
+            memory: "256Mi"
+            cpu: "0.1"
           requests:
             cpu: "0"
       volumes:

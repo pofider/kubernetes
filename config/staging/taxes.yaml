@@ -21,9 +21,10 @@ spec:
           subPath: credentials.json
           readOnly: true
         resources:
-          limits:
-            cpu: "0.5"
-          requests:
+         limits:
+            memory: "64Mi"
+            cpu: "0.1"
+         requests:
             cpu: "0"
       volumes:
       - name: taxes
