@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground-staging
-        image: jsreport/playground:2.2.8
+        image: jsreport/playground:2.3.1
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -30,6 +30,10 @@ spec:
               key: logglyToken
         - name: stack
           value: "test"
+        - name: extensions_dockerWorkers_network
+          value: "nw_playground_docker_workers_staging"
+        - name: extensions_dockerWorkers_subnet
+          value: "182.31.0.0/24"         
         - name: extensions_scripts_allowedModules
           value: "http,https,lodash,bluebird,async,axios,request"     
         - name: extensions_playground_baseUrl
