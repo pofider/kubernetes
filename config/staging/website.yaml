@@ -11,16 +11,17 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.3.12
+        image: jsreport/website:0.3.13
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
         resources:
           limits:
             memory: "64Mi"
-            cpu: "0.1"
+            cpu: "0.2"
           requests:
             cpu: "0"
+            memory: "0"
 ---          
 apiVersion: v1
 kind: Service
