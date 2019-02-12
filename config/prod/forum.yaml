@@ -25,6 +25,8 @@ spec:
             secretKeyRef:
               name: forum
               key: forum.txt
+        - name: url
+          value: https://forum.jsreport.net
         - name: mongo__host
           value: mongodb
         - name: mongo__username
