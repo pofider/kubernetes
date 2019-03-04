@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.3.5
+        image: jsreport/playground:2.3.4
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
