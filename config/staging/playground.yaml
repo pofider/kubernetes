@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground-staging
-        image: jsreport/playground:2.3.6
+        image: jsreport/playground:2.4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
