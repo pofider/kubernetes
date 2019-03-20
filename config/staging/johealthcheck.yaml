@@ -22,7 +22,7 @@ spec:
           readOnly: true
         resources:
           limits:
-            memory: "64Mi"
+            memory: "120Mi"
             cpu: "0.1"
           requests:
             cpu: "0"
