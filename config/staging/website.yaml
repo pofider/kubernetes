@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.3.19
+        image: jsreport/website:0.3.23
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
@@ -22,6 +22,20 @@ spec:
           requests:
             cpu: "0"
             memory: "0"
+        env:    
+        - name: PORT
+          value: "2000"
+        - name: mongodb_address
+          value: "mongodb"                
+        - name: mongodb_username
+          value: "admin"            
+        - name: mongodb_password
+          valueFrom:
+            secretKeyRef:
+              name: mongo
+              key: mongo.txt
+        - name: mongodb_authdb
+          value: "admin"
 ---          
 apiVersion: v1
 kind: Service

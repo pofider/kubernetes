@@ -35,7 +35,7 @@ spec:
         - name: extensions_dockerWorkers_subnet
           value: "182.31.0.0/24"         
         - name: extensions_scripts_allowedModules
-          value: "http,https,lodash,bluebird,async,axios,request"     
+          value: "http,https,lodash,bluebird,async,axios,request,moment"     
         - name: extensions_playground_baseUrl
           value: "http://playground.jsreport.cloud" 
         - name: extensions_mongodbStore_address
