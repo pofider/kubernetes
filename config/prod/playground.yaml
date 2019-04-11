@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.4.0
+        image: jsreport/playground:2.4.2
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -33,9 +33,7 @@ spec:
         - name: extensions_dockerWorkers_network
           value: "nw_playground_docker_workers"
         - name: extensions_dockerWorkers_subnet
-          value: "182.32.0.0/24"         
-        - name: extensions_scripts_allowedModules
-          value: "http,https,lodash,bluebird,async,axios,request,moment"     
+          value: "182.32.0.0/24"               
         - name: extensions_mongodbStore_address
           value: "mongodb"     
         - name: extensions_mongodbStore_username
