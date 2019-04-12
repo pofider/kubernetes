@@ -30,6 +30,14 @@ spec:
               key: logglyToken
         - name: stack
           value: "prod"
+        - name: extensions_dockerWorkers_numberOfWorkers
+          value: "2"  
+        - name: extensions_dockerWorkers_container_memory
+          value: "512mb"      
+        - name: extensions_dockerWorkers_container_memorySwap
+          value: "512mb"    
+        - name: extensions_dockerWorkers_container_cpus
+          value: "0.8"             
         - name: extensions_dockerWorkers_network
           value: "nw_playground_docker_workers"
         - name: extensions_dockerWorkers_subnet
@@ -99,7 +107,7 @@ spec:
         resources:
           limits:
             memory: "512Mi"
-            cpu: "0.3"
+            cpu: "0.6"
           requests:
             cpu: "0"
             memory: "0"
