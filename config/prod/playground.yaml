@@ -33,11 +33,11 @@ spec:
         - name: extensions_dockerWorkers_numberOfWorkers
           value: "2"  
         - name: extensions_dockerWorkers_container_memory
-          value: "512mb"      
+          value: "720mb"      
         - name: extensions_dockerWorkers_container_memorySwap
-          value: "512mb"    
+          value: "720mb"    
         - name: extensions_dockerWorkers_container_cpus
-          value: "0.8"             
+          value: "0.9"             
         - name: extensions_dockerWorkers_network
           value: "nw_playground_docker_workers"
         - name: extensions_dockerWorkers_subnet
