@@ -15,6 +15,11 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
+        volumeMounts:
+        - name: website
+          mountPath: /app/.env
+          subPath: .env
+          readOnly: true
         resources:
           limits:
             memory: "128Mi"
@@ -36,6 +41,13 @@ spec:
               key: mongo.txt
         - name: mongodb_authdb
           value: "admin"
+      volumes:
+      - name: website
+        secret:
+          secretName: website-credentials  
+          items:
+          - key: websiteCredentials.env
+            path: .env
 ---          
 apiVersion: v1
 kind: Service
