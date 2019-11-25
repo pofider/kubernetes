@@ -16,6 +16,8 @@ spec:
         ports:
         - containerPort: 2000      
         volumeMounts:
+        - mountPath: "/app/data"
+          name: volume
         - name: website
           mountPath: /app/.env
           subPath: .env
@@ -42,6 +44,9 @@ spec:
         - name: mongodb_authdb
           value: "admin"
       volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azurefile
       - name: website
         secret:
           secretName: website-credentials  
