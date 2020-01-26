@@ -99,7 +99,7 @@ metadata:
       }  
 spec:
   tls:
-  - secretName: jsreportnet-tls-secret-full
+  - secretName: jsreportnet-tls-secret-full2
     hosts:
     - jsreport.net
     - www.jsreport.net
