@@ -80,7 +80,7 @@ metadata:
       }
 spec:
   tls:
-  - secretName: forum-tls-secret-full
+  - secretName: forum-tls-secret-full2
     hosts:
     - forum.jsreport.net
   rules:  
