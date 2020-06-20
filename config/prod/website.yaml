@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: jsreport/website:0.9.2
+        image: jsreport/website:0.9.3
         imagePullPolicy: Always
         ports:
         - containerPort: 2000
