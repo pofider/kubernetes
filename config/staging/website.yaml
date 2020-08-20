@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.9.6
+        image: jsreport/website:0.10.1
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
@@ -49,9 +49,9 @@ spec:
           claimName: azurefile
       - name: website
         secret:
-          secretName: website-credentials  
+          secretName: website-staging-credentials  
           items:
-          - key: websiteCredentials.env
+          - key: websiteStagingCredentials.env
             path: .env
 ---          
 apiVersion: v1
