@@ -1,8 +1,11 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: taxes-staging
 spec:
+  selector:
+    matchLabels:
+      app: taxes-staging
   replicas: 1
   template:
     metadata:
