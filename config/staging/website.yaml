@@ -1,8 +1,11 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: website-staging
 spec:
+  selector:
+    matchLabels:
+      app: website-staging
   replicas: 1
   template:
     metadata:
@@ -11,7 +14,7 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.11.0
+        image: jsreport/website:0.11.1
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
