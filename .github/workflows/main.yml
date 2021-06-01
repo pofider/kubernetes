@@ -25,7 +25,7 @@ jobs:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
           az login --service-principal --username $AZ_APP_ID --password $AZ_PASSWORD --tenant $AZ_TENANT
-          az aks install-cli
+          sudo az aks install-cli
           az aks get-credentials --resource-group jsreport --name jsreport
 
           if [ "$BRANCH" == "master" ]; then 
