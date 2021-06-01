@@ -26,13 +26,13 @@ jobs:
 
           az login --service-principal --username $AZ_APP_ID --password $AZ_PASSWORD --tenant $AZ_TENANT
           sudo az aks install-cli
-          sudo  az aks get-credentials --resource-group jsreport --name jsreport
+          az aks get-credentials --resource-group jsreport --name jsreport
 
           if [ "$BRANCH" == "master" ]; then 
               echo "deploying to production"
-              sudo kubectl apply -f ./config/prod
+              kubectl apply -f ./config/prod
           else    
               SERVICE="$(echo "$BRANCH" | cut -d "-" -f 1)"
               echo "deploying to staging for ${SERVICE}"
-              sudo kubectl apply -f ./config/staging/${SERVICE}.yaml
+              kubectl apply -f ./config/staging/${SERVICE}.yaml
           fi
