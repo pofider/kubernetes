@@ -1,0 +1,43 @@
+name: main 
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2   
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+    
+      - shell: bash   
+        env:             
+          BRANCH: ${{ steps.extract_branch.outputs.branch }}    
+          AZ_APP_ID: ${{ secrets.AZ_APP_ID }} 
+          AZ_PASSWORD: ${{ secrets.AZ_PASSWORD }} 
+          AZ_TENANT: ${{ secrets.AZ_TENANT }} 
+        run: |    
+          AZ_REPO=$(lsb_release -cs)
+          echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
+              sudo tee /etc/apt/sources.list.d/azure-cli.list
+          curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add     
+          sudo apt-get install apt-transport-https -y
+          sudo apt-get update && sudo apt-get install -y azure-cli
+
+          az login --service-principal --username $AZ_APP_ID --password $AZ_PASSWORD --tenant $AZ_TENANT
+          sudo az aks install-cli
+          sudo az aks get-credentials --resource-group jsreport --name jsreport
+
+          if [ "$BRANCH" == "master" ]; then 
+              echo "deploying to production"
+              sudo kubectl apply -f ./config/prod
+          else    
+              SERVICE="$(echo "$BRANCH" | cut -d "-" -f 1)"
+              echo "deploying to staging for ${SERVICE}"
+              sudo kubectl apply -f ./config/staging/${SERVICE}.yaml
+          fi
