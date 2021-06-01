@@ -8,6 +8,7 @@ hub config --global user.email "honza.pofider@seznam.cz"
 hub config --global user.name "pofider"
 
 hub checkout -b ${1}-1.0.0
+echo "https://pofider:$GITHUB_TOKEN@github.com/pofider/kubernetes.git"
 hub config remote.origin.url https://pofider:$GITHUB_TOKEN@github.com/pofider/kubernetes.git
 
 DOCKER_IMAGE="$(echo "$2" | sed 's/[^-A-Za-z0-9_]/\\&/g')"
