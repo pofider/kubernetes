@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:2.11.1
+        image: jsreport/playground:3.0.0-beta.3
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
@@ -32,7 +32,7 @@ spec:
               name: playground
               key: logglyToken
         - name: stack
-          value: "prod"
+          value: "prod"     
         - name: extensions_dockerWorkers_numberOfWorkers
           value: "2"  
         - name: extensions_dockerWorkers_container_memory
