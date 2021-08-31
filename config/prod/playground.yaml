@@ -34,7 +34,7 @@ spec:
         - name: stack
           value: "prod"     
         - name: extensions_dockerWorkers_numberOfWorkers
-          value: "2"  
+          value: "3"  
         - name: extensions_dockerWorkers_container_memory
           value: "720mb"      
         - name: extensions_dockerWorkers_container_memorySwap
