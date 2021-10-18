@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:3.0.0-beta.4
+        image: jsreport/playground:3.0.0-beta.10
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
         volumeMounts:
         - mountPath: /var/run/docker.sock
           name: docker-sock-volume
-        env:      
+        env:            
         - name: ip
           valueFrom:
             fieldRef:
@@ -32,7 +32,7 @@ spec:
               name: playground
               key: logglyToken
         - name: stack
-          value: "prod"     
+          value: "prod"      
         - name: extensions_dockerWorkers_numberOfWorkers
           value: "3"  
         - name: extensions_dockerWorkers_container_memory
@@ -40,7 +40,7 @@ spec:
         - name: extensions_dockerWorkers_container_memorySwap
           value: "720mb"    
         - name: extensions_dockerWorkers_container_cpus
-          value: "0.9"             
+          value: "0.9"                  
         - name: extensions_dockerWorkers_network
           value: "nw_playground_docker_workers"
         - name: extensions_dockerWorkers_subnet
