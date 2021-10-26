@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:3.0.0-beta.10
+        image: jsreport/playground:3.0.0-beta.11
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
         volumeMounts:
         - mountPath: /var/run/docker.sock
           name: docker-sock-volume
-        env:            
+        env:              
         - name: ip
           valueFrom:
             fieldRef:
