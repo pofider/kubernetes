@@ -14,13 +14,15 @@ spec:
     spec:
       containers:
       - name: playground
-        image: jsreport/playground:3.5.3
+        image: jsreport/playground:3.5.5
         imagePullPolicy: Always
         ports:
         - containerPort: 5488
         volumeMounts:
         - mountPath: /var/run/docker.sock
           name: docker-sock-volume
+        - mountPath: /memory-dump
+          name: memory-dump
         env:
         - name: ip
           valueFrom:
@@ -119,6 +121,8 @@ spec:
         hostPath:
           path: /var/run/docker.sock
           type: File
+      - name: memory-dump
+        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
