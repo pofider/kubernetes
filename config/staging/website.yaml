@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: website-staging
-        image: jsreport/website:0.16.0
+        image: jsreport/website:0.16.1
         imagePullPolicy: Always
         ports:
         - containerPort: 2000      
