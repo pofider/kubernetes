@@ -32,7 +32,7 @@ spec:
               key: mongo.txt
         resources:
           limits:
-            memory: "1024Mi"
+            memory: "520Mi"
             cpu: "0.3"
           requests:
             cpu: "0"

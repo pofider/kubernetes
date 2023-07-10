@@ -111,7 +111,7 @@ spec:
               key: secret
         resources:
           limits:
-            memory: "512Mi"
+            memory: "1024Mi"
             cpu: "0.6"
           requests:
             cpu: "0"
