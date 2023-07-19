@@ -84,7 +84,7 @@ metadata:
       }
 spec:
   tls:
-  - secretName: support-tls-secret6
+  - secretName: support-tls-secret7
     hosts:
     - support.jsreport.net
   rules:  
