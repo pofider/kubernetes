@@ -46,6 +46,8 @@ spec:
               key: mongo.txt
         - name: mongodb_authdb
           value: "admin"
+        - name: SUBSCRIPTIN_RENEWAL_ENABLED
+          value:           
       volumes:
       - name: volume
         persistentVolumeClaim:
